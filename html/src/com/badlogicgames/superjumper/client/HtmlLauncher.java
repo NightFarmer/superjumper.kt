@@ -3,7 +3,6 @@ package com.badlogicgames.superjumper.client;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.backends.gwt.GwtApplication;
 import com.badlogic.gdx.backends.gwt.GwtApplicationConfiguration;
-import com.badlogicgames.superjumper.SuperJumper;
 
 public class HtmlLauncher extends GwtApplication {
 

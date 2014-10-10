@@ -1,4 +1,5 @@
 buildscript {
+    ext.kotlin_version = '0.8.1527'
     repositories {
         maven {
             url 'https://github.com/steffenschaefer/gwt-gradle-plugin/raw/maven-repo/'
@@ -9,15 +10,16 @@ buildscript {
 
     dependencies {
         classpath 'de.richsource.gradle.plugins:gwt-gradle-plugin:0.3'
-        classpath 'com.android.tools.build:gradle:0.9+'
+        classpath 'com.android.tools.build:gradle:0.12+'
         classpath 'com.github.jtakakura:gradle-robovm-plugin:0.0.6'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
 
 allprojects {
     apply plugin: "eclipse"
     apply plugin: "idea"
-    
+
     version = "1.0"
     ext {
         appName = "Super Jumper"
@@ -34,15 +36,18 @@ allprojects {
 
 project(":core") {
     apply plugin: "java"
-    
+    apply plugin: "kotlin"
+
     dependencies {
         compile "com.badlogicgames.gdx:gdx:$gdxVersion"
+        compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     }
 }
 
 project(":desktop") {
     apply plugin: "java"
-    
+    apply plugin: "kotlin"
+
     dependencies {
         compile project(":core")
         compile "com.badlogicgames.gdx:gdx-backend-lwjgl:$gdxVersion"
@@ -52,6 +57,7 @@ project(":desktop") {
 
 project(":android") {
     apply plugin: "android"
+    apply plugin: "kotlin-android"
 
     configurations { natives }
 

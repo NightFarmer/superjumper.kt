@@ -6,8 +6,11 @@ dependencies {
     compile "com.badlogicgames.gdx:gdx:$gdxVersion"
 }
 
-sourceSets.main.java.srcDirs = [ "src/" ]
+sourceSets.main.java.srcDirs = [ "src/main/kotlin", "src/main/java" ]
 
 eclipse.project {
     name = appName + "-core"
 }
+
+
+
