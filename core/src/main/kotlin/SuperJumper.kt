@@ -16,24 +16,15 @@
 
 package com.badlogicgames.superjumper
 
-import com.badlogic.gdx.graphics.g2d.TextureRegion
+import com.badlogic.gdx.Game
+import com.badlogic.gdx.graphics.g2d.SpriteBatch
+import kotlin.properties.Delegates
 
-public class Animation(val frameDuration: Float, vararg keyFrames: TextureRegion) {
+public class SuperJumper : Game() {
+    public val batcher: SpriteBatch by Delegates.lazy { SpriteBatch() }
 
-    val keyFrames: Array<TextureRegion> = keyFrames
-
-    public fun getKeyFrame(stateTime: Float, mode: Int): TextureRegion {
-        var frameNumber = (stateTime / frameDuration).toInt()
-
-        when (mode) {
-            ANIMATION_NONLOOPING -> { frameNumber = Math.min(keyFrames.size - 1, frameNumber) }
-            ANIMATION_LOOPING -> { frameNumber = frameNumber % keyFrames.size }
-        }
-        return keyFrames[frameNumber]
-    }
-
-    class object {
-        public val ANIMATION_LOOPING: Int = 0
-        public val ANIMATION_NONLOOPING: Int = 1
+    override fun create() {
+        Settings.load()
+        setScreen(MainMenuScreen(this))
     }
 }
